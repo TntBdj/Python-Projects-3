@@ -1,7 +1,7 @@
 from PIL import Image
 import os
 
-j_List = ["arch", "balloons", "dubai", "ems", "kcm", "landscape", "palace", "rio", "trees"]
+j_List = ["arch", "balloons", "dubai", "ems", "helix", "kcm", "landscape", "palace", "rio", "trees"]
 p_List = []
 a_List = ["rotate", "resize", "png", "black+white", "blur"]
 
