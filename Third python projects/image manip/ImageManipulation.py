@@ -108,6 +108,11 @@ def png():
     p_List.append(userImageChoice)
 
 def blackWhite():
+    im = Image.open(f"{userImageChoice}.jpg")
+    im = img.convert("L")
+    im.save('bw folder/'+userImageChoice+'BW.jpg')
+    p_List.append(userImageChoice)
+    print("Saved in bw folder")
     return
 
 def blur():
