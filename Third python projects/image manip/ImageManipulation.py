@@ -113,5 +113,4 @@ def blackWhite():
 def blur():
     return
 
-
 main()
