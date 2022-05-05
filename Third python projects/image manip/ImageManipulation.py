@@ -1,10 +1,11 @@
 from PIL import Image
 import os
 
-j_List = ["arch", "balloons", "dubai", "ems", "kcm", "landscape", "palace", "rio", "trees"]
-p_List = []
+j_List = ["arch", "balloons", "dubai", "ems", "helix", "kcm", "landscape", "palace", "rio", "trees"]
 a_List = ["rotate", "resize", "png", "black+white", "blur"]
-
+size200 = (200,200)
+size400 = (400,400)
+size600 = (600,600)
 
 def displayList(x):
     for i in x:
@@ -18,18 +19,8 @@ def main():
         print("Saved images: ")
         displayList(j_List)
         userImageChoice = input("Which image would u like to open? or (q) to quit: ")
-        userImageChoice.lower()
-        if userImageChoice in j_List and userImageChoice in p_List:
-            p_or_j = input("Would you like to open the png or jpg version?: ")
-            p_or_j.lower()
-            if p_or_j == "jpg":
-                userImage = Image.open(f"{userImageChoice}.jpg")
-                userImage.show()
-            elif p_or_j == "png":
-                userImage = Image.open(f"{userImageChoice}.png")
-                userImage.show()
-            
-        elif userImageChoice in j_List:
+        userImageChoice.lower()       
+        if userImageChoice in j_List:
             userImage = Image.open(f"{userImageChoice}.jpg")
             userImage.show()
             if userConfirm() == True:
@@ -40,14 +31,16 @@ def main():
             print("Invalid input\n")
     
 def userConfirm():
-    userChoice = input("do you want to alter this image? (y/n): ")
-    if userChoice.lower() == "y":
-        return True
-    elif userChoice.lower() == "n":
-        print("")
-        main()
-    else:
-        print("Invalid input")
+    while True:
+        userChoice = input("do you want to alter this image? (y/n): ")
+        if userChoice.lower() == "y":
+            break
+        elif userChoice.lower() == "n":
+            print("")
+            main()
+        else:
+            print("Invalid input\n")
+    return True
 
 def alterUserImage():
     while True:
@@ -76,23 +69,53 @@ def alterUserImage():
             print("Invalid input\n")
 
 def rotate():
-    return
+    im = Image.open(f"{userImageChoice}.jpg")
+    im.rotate(90).save('rotation folder/'+userImageChoice+'Rotated.jpg')
+    p_List.append(userImageChoice)
+    print("Saved in rotation folder")
 
 def resize():
-    return
+    while True:
+    userChoice = input("Do you want it to be 200x200, 400x400, 600x600?: ")
+    im = Image.open(f"{userImageChoice}.jpg")
+    userChoice.lower()
+    if userChoice == "200x200":
+        im.thumbnail(size200)
+        im.save('200 jpeg/'+userImageChoice+'200.jpg')
+        p_List.append(userImageChoice)
+        print("Saved in 200 jpeg folder")
+        break
+    elif userChoice == "400x400":
+        im.thumbnail(size400)
+        im.save('400 jpeg/'+userImageChoice+'400.jpg')
+        p_List.append(userImageChoice)
+        print("Saved in 400 jpeg folder")
+        break
+    elif userChoice == "600x600":
+        im.thumbnail(size600)
+        im.save('600 jpeg/'+userImageChoice+'600.jpg')
+        p_List.append(userImageChoice)
+        print("Saved in 400 jpeg folder")
+        break
+    else:
+        print("Invalid input")
 
 def png():
-    i = Image.open(f"{userImageChoice}.jpg")
+    im = Image.open(f"{userImageChoice}.jpg")
     fn, fext = os.path.splitext(f"{userImageChoice}.jpg")
-    i.save('png folder/{}.png'.format(fn))
+    im.save('png folder/{}.png'.format(fn))
+    print("Saved in png folder")
     p_List.append(userImageChoice)
-    print(p_List)
 
 def blackWhite():
+    im = Image.open(f"{userImageChoice}.jpg")
+    im = img.convert("L")
+    im.save('bw folder/'+userImageChoice+'BW.jpg')
+    p_List.append(userImageChoice)
+    print("Saved in bw folder")
     return
 
 def blur():
     return
-
 
 main()
