@@ -133,9 +133,7 @@ def blur():
 
 def contrast():
     im = Image.open(f"{userImageChoice}.jpg")
-    im.save('contrast folder/'+userImageChoice+'Contrast.jpg')
-    im1 = ImageEnhance.Contrast(im)
-    con_im = im1.enhance(1.3).show("30% more contrast")
-    con_im.save('contrast folder/'+userImageChoice+'Contrast.jpg')
+    enh = ImageEnhance.Contrast(im)
+    enh.enhance(1.9).save('contrast folder/'+userImageChoice+'Contrast.jpg')
 
 main()
