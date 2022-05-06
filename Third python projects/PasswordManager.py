@@ -44,7 +44,7 @@ while True:
         
     if mode == "v":
         while True:
-                userInput = input("Enter the master password before viewing information")
+                userInput = input("Enter the master password before viewing information: ")
                 if userInput == master_pass:
                         break
                 elif userInput == "q":
@@ -55,7 +55,7 @@ while True:
         view()
     elif mode == "a":
         while True:
-                userInput = input("Enter the master password before adding information")
+                userInput = input("Enter the master password before adding information: ")
                 if userInput == master_pass:
                         break
                 elif userInput == "q":
