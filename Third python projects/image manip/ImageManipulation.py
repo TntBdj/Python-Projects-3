@@ -210,4 +210,5 @@ def contrast():
     print("Saved in contrast folder\n")
 
 
+#This is the only function that is needed to be called intially called for the program to properly run
 main()
