@@ -7,6 +7,8 @@ def write_key():
                 key_file.write(key) 
 """
 
+master_pass = input("Enter the master password (be sure to remember it): ")
+
 def load_key():
         file = open("key.key", "rb")
         key = file.read()
@@ -41,9 +43,27 @@ while True:
             break
         
     if mode == "v":
-            view()
+        while True:
+                userInput = input("Enter the master password before viewing information")
+                if userInput == master_pass:
+                        break
+                elif userInput == "q":
+                        quit()
+                else:
+                        print("Sorry that password is incorrect, try again or press q to quit")
+                        continue
+        view()
     elif mode == "a":
-            add()
+        while True:
+                userInput = input("Enter the master password before adding information")
+                if userInput == master_pass:
+                        break
+                elif userInput == "q":
+                        quit()
+                else:
+                        print("Sorry that password is incorrect, try again or press q to quit")
+                        continue
+        add()
     else:
         print("Invalid input")
         continue
