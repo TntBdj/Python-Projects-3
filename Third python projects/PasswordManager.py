@@ -1,6 +1,8 @@
+#Imported modules for running the file
 from unicodedata import name
 from cryptography.fernet import Fernet
 
+#The master password that muct be remembered to do any functions
 master_pass = input("Enter the master password (be sure to remember it): ")
 
 def new_key():
@@ -12,7 +14,7 @@ def new_key():
 key = new_key() 
 fer = Fernet(key)
 
-
+#Allows the user to add information onto their encrypted file
 def add_info():
     name = input("Account name: ")
     pwd = input("Password: ")
@@ -21,7 +23,7 @@ def add_info():
     with open('password_database.txt', 'a') as f:
         f.write(name + "|" + fer.encrypt(pwd.encode()).decode() + "|" + fer.encrypt(phone.encode()).decode() + "\n")
 
-
+#Allows the user to view information on their encrypted file
 def view_info():
     with open('password_database.txt', 'r') as f:
             for line in f.readlines():
@@ -29,7 +31,7 @@ def view_info():
                 name, password, phoneNumber = data.split("|")
                 print("Name:", name, "| Password:", fer.decrypt(password.encode()).decode(), "| Phone Number:", fer.decrypt(phoneNumber.encode()).decode())
 
-
+#This will ask the user if they want to add or view information, then to input the master password, or simply quit
 while True:
     userSelection = input("View or add a password (v/a) or q to quit?: ")
     userSelection.lower()
